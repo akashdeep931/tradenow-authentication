@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon listen.js"
+    "dev": "nodemon listen.js",
+    "setup-dbs": "psql -f ./db/setup.sql",
+    "create-session": "node ./db/createSession"
   },
   "keywords": [],
   "author": "",
