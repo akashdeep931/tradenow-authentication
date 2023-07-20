@@ -1,3 +1,5 @@
 DROP DATABASE IF EXISTS tradenow;
+DROP DATABASE IF EXISTS tradenow_test;
 
 CREATE DATABASE tradenow;
+CREATE DATABASE tradenow_test;
