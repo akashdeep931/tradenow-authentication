@@ -124,7 +124,7 @@ describe("POST /login", () => {
           expect(location).toBe("/authenticated");
         });
     });
-    it("200: /authenticated should response with the user data without confidential data", () => {
+    it("200: /authenticated should serve with the user data without confidential data", () => {
       return request(app)
         .get(authEndpoint)
         .set("cookie", cookie)
@@ -142,7 +142,7 @@ describe("POST /login", () => {
     });
   });
   describe("Errors requesting /authenticated", () => {
-    it("401: /authenticated should response with an unauthorised error when no user is authenticated", () => {
+    it("401: /authenticated should serve with an unauthorised error when no user is authenticated", () => {
       return request(app)
         .get("/authenticated")
         .expect(401)
@@ -244,7 +244,7 @@ describe("POST /login", () => {
     });
   });
   describe("Errors requesting /failed-authentication", () => {
-    it("401: /failed-authentication should response with an unauthorised error when no user is authenticated", () => {
+    it("401: /failed-authentication should serve with an unauthorised error when no user is authenticated", () => {
       return request(app)
         .get("/failed-authentication")
         .expect(401)
@@ -254,7 +254,7 @@ describe("POST /login", () => {
           expect(msg).toBe("User not authorised.");
         });
     });
-    describe("/failed-authentication should response with an unauthorised error when requesting after an unsuccessful login", () => {
+    describe("/failed-authentication should serve with an unauthorised error when requesting after an unsuccessful login", () => {
       const cookie = [];
       let authEndpoint = "";
 
@@ -283,7 +283,7 @@ describe("POST /login", () => {
             expect(msg).toBe("Incorrect user or password");
           });
       });
-      it("401: /failed-authentication should response with an unauthorised error after an unsuccessful login", () => {
+      it("401: /failed-authentication should serve with an unauthorised error after an unsuccessful login", () => {
         return request(app)
           .get(authEndpoint)
           .set("cookie", cookie)
@@ -346,7 +346,7 @@ describe("GET /login", () => {
           expect(location).toBe("/authenticated");
         });
     });
-    it("401: /authenticated should response with an unauthorised error after requesting /logout with no user authenticated", () => {
+    it("401: /authenticated should serve with an unauthorised error after requesting /logout with no user authenticated", () => {
       return request(app)
         .get(endpoint)
         .set("cookie", cookie)
@@ -374,7 +374,7 @@ describe("GET /login", () => {
           expect(location).toBe("/authenticated");
         });
     });
-    it("200: /authenticated should response with the user data without confidential data", () => {
+    it("200: /authenticated should serve with the user data without confidential data", () => {
       return request(app)
         .get("/authenticated")
         .set("cookie", cookie)
@@ -403,7 +403,7 @@ describe("GET /login", () => {
           expect(location).toBe("/authenticated");
         });
     });
-    it("401: /authenticated should response with an unauthorised error after requesting /logout with a logged user", () => {
+    it("401: /authenticated should serve with an unauthorised error after requesting /logout with a logged user", () => {
       return request(app)
         .get("/authenticated")
         .set("cookie", cookie)
