@@ -1,3 +1,5 @@
+const { fetchAllAPIs } = require("../models/get.models");
+
 exports.getAuthConfirmation = (req, res, next) => {
   res.status(200).send({ user: req.user });
 };
@@ -17,4 +19,10 @@ exports.getAuthFailure = (req, res, next) => {
     req.session.messages.splice(0, req.session.messages.length);
     res.status(404).send({ msg: "Incorrect user or password" });
   }
+};
+
+exports.getAllAPIs = (req, res, next) => {
+  fetchAllAPIs().then((data) => {
+    res.status(200).send({ endpoints: data });
+  });
 };

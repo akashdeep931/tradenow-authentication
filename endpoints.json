@@ -1,0 +1,26 @@
+{
+  "GET /api": {
+    "description": "serves up a json representation of all the available endpoints of the api"
+  },
+  "POST /register": {
+    "description": "creates a new instance of a user with the posted data in the database",
+    "exampleResponse": "does not return anything instead sends response with a 201 CREATED status code"
+  },
+  "POST /login": {
+    "description": "uses passport-local strategy to safely authenticate the user and stores a cookie in the browser",
+    "exampleResponse": {
+      "user": {
+        "user_id": "1",
+        "username": "kakashi931",
+        "name": "Akash",
+        "surname": "Rai"
+      }
+    }
+  },
+  "GET /logout": {
+    "description": "logs out the authenticated user and removes him or her from the session",
+    "exampleResponse": {
+      "msg": "User not authorised."
+    }
+  }
+}

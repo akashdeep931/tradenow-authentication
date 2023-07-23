@@ -3,9 +3,10 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const db = require("./db/connection");
 const passport = require("passport");
-const crypto = require("crypto");
 const authRouter = require("./routes/authentication-routes");
+const apiRouter = require("./routes/api-routes");
 const { handlePsqlErrors } = require("./errors/errorHandlers");
+const { incorrectPath } = require("./controllers/incorrectPath.controllers");
 
 const app = express();
 
@@ -37,7 +38,9 @@ require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(apiRouter);
 app.use(authRouter);
+app.all("/*", incorrectPath);
 app.use(handlePsqlErrors);
 
 module.exports = app;

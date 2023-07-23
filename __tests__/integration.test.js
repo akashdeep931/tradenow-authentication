@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 const db = require("../db/connection");
 const createTables = require("../db/createTables");
+const endpointsJson = require("../endpoints.json");
 
 beforeAll(() => {
   return createTables();
@@ -413,5 +414,28 @@ describe("GET /login", () => {
           expect(msg).toBe("User not authorised.");
         });
     });
+  });
+});
+
+describe("GET /api", () => {
+  it("200: should return JSON string with all the endpoints details", () => {
+    return request(app)
+      .get("/api")
+      .expect(200)
+      .then(({ body }) => {
+        const { endpoints } = body;
+
+        expect(endpoints).toEqual(endpointsJson);
+      });
+  });
+  it("400: should return bad request error when requested an incorrect endpoint", () => {
+    return request(app)
+      .get("/asjhdbjasd")
+      .expect(400)
+      .then(({ body }) => {
+        const { msg } = body;
+
+        expect(msg).toBe("Bad Request!");
+      });
   });
 });
