@@ -9,4 +9,12 @@ function generatePassword(password) {
   return { salt, hash };
 }
 
-module.exports = { generatePassword };
+function validatePassword(password, hash, salt) {
+  const hashedPassword = crypto
+    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+    .toString("hex");
+
+  return hash === hashedPassword;
+}
+
+module.exports = { generatePassword, validatePassword };
