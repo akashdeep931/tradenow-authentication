@@ -32,6 +32,11 @@ app.use(
   })
 );
 
+require("./config/passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(authRouter);
 app.use(handlePsqlErrors);
 
