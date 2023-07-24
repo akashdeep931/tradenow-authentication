@@ -1,5 +1,7 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const authRouter = require("./routes/authentication-routes");
 const apiRouter = require("./routes/api-routes");
@@ -14,11 +16,20 @@ require("dotenv").config({
   path: `${__dirname}/.env.production`,
 });
 
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.CONNECTION_STRING,
+  mongoOptions: {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+});
+
 app.use(
   session({
     secret: process.env.SECRET_STRING,
     resave: false,
     saveUninitialized: true,
+    store: sessionStore,
     cookie: {
       maxAge: 1000 * 60 * 60 * 78,
     },
