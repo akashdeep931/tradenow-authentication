@@ -2,12 +2,14 @@
   "name": "tradenow-authentication",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "listen.js",
   "scripts": {
     "test": "jest",
     "dev": "nodemon listen.js",
+    "start": "node listen.js",
     "setup-dbs": "psql -f ./db/setup.sql",
     "create-tables": "node ./db/runCreateTables",
+    "create-tables-prod": "NODE_ENV=production npm run create-tables",
     "prepare": "husky install"
   },
   "keywords": [],
