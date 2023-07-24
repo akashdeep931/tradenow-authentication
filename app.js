@@ -7,10 +7,12 @@ const authRouter = require("./routes/authentication-routes");
 const apiRouter = require("./routes/api-routes");
 const { handlePsqlErrors } = require("./errors/errorHandlers");
 const { incorrectPath } = require("./controllers/incorrectPath.controllers");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 require("dotenv").config({
   path: `${__dirname}/.env.production`,
