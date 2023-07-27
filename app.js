@@ -12,11 +12,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    credentials: true,
-  })
-);
+app.use(cors());
 
 require("dotenv").config({
   path: `${__dirname}/.env.production`,
