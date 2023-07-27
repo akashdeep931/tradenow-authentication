@@ -15,7 +15,8 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://localhost:5173",
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
@@ -49,10 +50,6 @@ require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
 app.use(apiRouter);
 app.use(authRouter);
 app.all("/*", incorrectPath);
