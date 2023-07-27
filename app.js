@@ -12,7 +12,13 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173/login", "http://localhost:5173/register"],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 require("dotenv").config({
   path: `${__dirname}/.env.production`,
