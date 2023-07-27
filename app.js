@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const pgSession = require("connect-pg-simple")(session);
 const db = require("./db/connection");
 const passport = require("passport");
@@ -12,7 +13,12 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 require("dotenv").config({
   path: `${__dirname}/.env.production`,
@@ -34,6 +40,8 @@ app.use(
     },
   })
 );
+
+app.use(cookieParser());
 
 require("./config/passport");
 
