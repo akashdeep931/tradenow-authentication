@@ -34,7 +34,7 @@ app.use(
   session({
     secret: process.env.SECRET_STRING,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: sessionStorage,
     cookie: {
       maxAge: 1000 * 60 * 60 * 78,
