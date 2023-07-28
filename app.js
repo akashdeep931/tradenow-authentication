@@ -39,9 +39,8 @@ app.use(
     saveUninitialized: true,
     store: sessionStorage,
     cookie: {
-      domain: ".localhost",
-      httpOnly: false,
       maxAge: 1000 * 60 * 60 * 78,
+      sameSite: "none",
     },
   })
 );
