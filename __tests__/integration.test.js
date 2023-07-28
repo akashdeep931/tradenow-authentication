@@ -328,7 +328,7 @@ describe("POST /login", () => {
 });
 
 describe("GET /logout", () => {
-  describe.skip("Requesting /logout without authenticating", () => {
+  describe("Requesting /logout without authenticating", () => {
     const cookie = [];
     let endpoint = "";
 

@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -34,7 +34,7 @@ app.use(
   session({
     secret: process.env.SECRET_STRING,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: sessionStorage,
     cookie: {
       maxAge: 1000 * 60 * 60 * 78,
