@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const cookieParser = require("cookie-parser");
 const pgSession = require("connect-pg-simple")(session);
 const db = require("./db/connection");
 const passport = require("passport");
@@ -13,6 +12,8 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -40,8 +41,6 @@ app.use(
     },
   })
 );
-
-app.use(cookieParser(process.env.SECRET_STRING));
 
 require("./config/passport");
 
