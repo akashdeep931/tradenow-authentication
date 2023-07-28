@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://64c3e796035c7b0fef2f7658--tdnow.netlify.app/",
     credentials: true,
   })
 );
