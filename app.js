@@ -16,8 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "https://tdnow.netlify.app",
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "http://localhost:1573",
+    methods: ["GET", "PUT", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "*"],
     credentials: true,
   })
 );
@@ -38,8 +39,8 @@ app.use(
     saveUninitialized: true,
     store: sessionStorage,
     cookie: {
+      domain: ".localhost",
       maxAge: 1000 * 60 * 60 * 78,
-      domain: ".tdnow.netlify.app",
     },
   })
 );
