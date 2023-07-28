@@ -40,6 +40,7 @@ app.use(
     store: sessionStorage,
     cookie: {
       domain: ".localhost",
+      httpOnly: false,
       maxAge: 1000 * 60 * 60 * 78,
     },
   })
