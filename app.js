@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "https://localhost:5173",
+    origin: "https://tradenow-production.up.railway.app",
     credentials: true,
-    methods: ["GET", "PUT", "POST", "DELETE"],
+    methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
     allowedHeaders: "Content-Type, *",
   })
 );
@@ -39,9 +39,6 @@ app.use(
     saveUninitialized: true,
     store: sessionStorage,
     cookie: {
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      secure: process.env.NODE_ENV === "production",
-      httpOnly: false,
       maxAge: 1000 * 60 * 60 * 78,
     },
   })
