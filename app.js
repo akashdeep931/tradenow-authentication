@@ -17,9 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "PUT", "POST", "DELETE"],
-    allowedHeaders: ["Content-Type", "*"],
     credentials: true,
+    methods: ["GET", "PUT", "POST", "DELETE"],
+    allowedHeaders: "Content-Type, *",
   })
 );
 
@@ -39,6 +39,8 @@ app.use(
     saveUninitialized: true,
     store: sessionStorage,
     cookie: {
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production",
       maxAge: 1000 * 60 * 60 * 78,
     },
   })
