@@ -16,6 +16,8 @@ exports.isLogged = (req, res, next) => {
 
 exports.checkAuthForFailedEndpoint = (req, res, next) => {
   if (req.isAuthenticated()) {
+    if (req.session.messages)
+      req.session.messages.splice(0, req.session.messages.length);
     const error = new Error("Bad Request");
     error.code = "23502";
     next(error);

@@ -16,7 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "https://tradenow-production.up.railway.app",
+    origin: [
+      "https://tradenow-production.up.railway.app",
+      "http://localhost:5173",
+    ],
     credentials: true,
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
     allowedHeaders: "Content-Type, *",
@@ -40,6 +43,7 @@ app.use(
     store: sessionStorage,
     cookie: {
       maxAge: 1000 * 60 * 60 * 78,
+      httpOnly: false,
     },
   })
 );
