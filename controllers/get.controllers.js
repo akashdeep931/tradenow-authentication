@@ -1,6 +1,6 @@
 const { fetchAllAPIs } = require("../models/get.models");
 
-exports.getAuthConfirmation = (req, res, next) => {
+exports.getAuthConfirmation = (req, res) => {
   res.status(200).send({ user: req.user });
 };
 
